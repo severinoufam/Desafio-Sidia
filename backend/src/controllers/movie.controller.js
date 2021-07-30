@@ -26,7 +26,6 @@ exports.create = (res) => {
 };
 
 //Busca de filmes por titulo
-
 exports.findMoviesTitle = (req, res) => {
 
   const filter = '%'+req.body.title+'%'
@@ -49,6 +48,7 @@ exports.findMoviesTitle = (req, res) => {
       });
 };
 
+//Busca de filmes por ano e genero
 exports.findMoviesYearGenres = (req, res) => {
 
   const year = '%'+req.params.year+'%';
@@ -78,7 +78,7 @@ exports.findMoviesYearGenres = (req, res) => {
       });
 };
 
-
+//Busca de filmes com classificação K
 exports.findMoviesListTopK = async (req, res) => {
 
 

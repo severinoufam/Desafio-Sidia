@@ -37,6 +37,7 @@ export class MovieComponent implements OnInit {
   getTypeFilter(type:number){
       this.movie.title = ''
       this.movie.typeFilter = type;
+      this.movies = [];
   }
 
   searchMovies(){

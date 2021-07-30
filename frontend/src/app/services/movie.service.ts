@@ -20,14 +20,28 @@ export class MovieService {
   constructor(private http: HttpClient) { }
 
   /**  Busca todos os filme */
-  getMovies(title: string): Observable<Movie[]> {
+  getMoviesTitle(title: string): Observable<Movie[]> {
+
     const url = `${this.movieUrl}/${title}`;
+
     return this.http.get<Movie[]>(url)
       .pipe(
         tap(() => this.log('fetched movie')),
-        catchError(this.handleError<Movie[]>('getMovies', []))
+        catchError(this.handleError<Movie[]>('getMoviesTitle', []))
       );
   }
+
+    /**  Busca  os filme por ano e genero*/
+    getMoviesYearGenres(year: number,genres:string): Observable<Movie[]> {
+
+      const url = `${this.movieUrl}/${year}/${genres}`;
+
+      return this.http.get<Movie[]>(url)
+        .pipe(
+          tap(() => this.log('fetched movie')),
+          catchError(this.handleError<Movie[]>('getMoviesYearGenres', []))
+        );
+    }
 
   /**
    * Handle Http operation that failed.

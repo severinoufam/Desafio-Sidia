@@ -23,9 +23,25 @@
         <input (click)="getTypeFilter(3)" class="form-check-input" type="radio" name="typeFilter" id="typeFilter3" value="3">
         <label class="form-check-label" for="inlineRadio2">Classificação por avaliação</label>
       </div>
-      <div class="input-group mb-3">
-        <input [(ngModel)]="movie.title" id="title" name="title" type="text" class="form-control" placeholder="Pesquisar:" aria-label="Pesquisar:" aria-describedby="button-addon2">
-        <button (click)="getMovies()" class="btn btn-outline-info" type="button" id="btn-filter">Pesquisar</button>
+
+      <div class="row" style="margin-top:20px;">
+          <div *ngIf="movie.typeFilter == 2"  class="col-4">
+            <select  [(ngModel)]="movie.yearFilter" name="yearFilterSelect" id="yearFilterSelect" class="form-select">
+              <option  *ngFor="let year of years" value="{{ year }}">{{ year }}</option>
+            </select>
+        </div>
+        <div *ngIf="movie.typeFilter == 1 || movie.typeFilter == 2" class="col-8">
+          <div class="input-group mb-3">
+            <input [(ngModel)]="movie.title" id="title" name="title" type="text" class="form-control" placeholder="Pesquisar:" aria-label="Pesquisar:" aria-describedby="button-addon2">
+            <button (click)="searchMovies()" class="btn btn-outline-info" type="button" id="btn-filter">Pesquisar</button>
+          </div>
+        </div>
+
+        <div *ngIf="movie.typeFilter == 3" class="col-2">
+          <label for="partNumber" class="form-label">Avaliação</label>
+          <input [(ngModel)]="rating.rating" type="number" min="1" max="5" class="form-control" id="rating" name="rating">
+        </div>
+
       </div>
 
   </div>
@@ -71,6 +87,6 @@
     </div>
   </ng-template>
 
-  
+
 </div>
 

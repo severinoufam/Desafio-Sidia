@@ -3,4 +3,5 @@ export interface Movie {
   title: string;
   genres: string;
   typeFilter: number;
+  yearFilter: number;
 }

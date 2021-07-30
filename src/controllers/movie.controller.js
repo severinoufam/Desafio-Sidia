@@ -26,23 +26,25 @@ exports.create = (res) => {
 
 //Busca de filmes por titulo
 exports.findMoviesTitle = (req, res) => {
-  const filter = "%" + req.body.title + "%";
+
+  const filter = '%'+req.body.title+'%'
 
   Movie.findAll({
     where: {
       title: {
-        [Sequelize.Op.like]: filter,
-      },
-    },
+        [Sequelize.Op.like]: filter
+      }
+    }
   })
-    .then((data) => {
-      res.status(200).send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Erro ao listar o filme.",
+      .then(data => {
+          res.status(200).send(data);
+      })
+      .catch(err => {
+          res.status(500).send({
+              message:
+                  err.message || "Erro ao listar o filme."
+          });
       });
-    });
 };
 
 //Busca de filmes por ano e genero

@@ -52,7 +52,7 @@ exports.findMoviesTitle = (req, res) => {
 exports.findMoviesYearGenres = (req, res) => {
 
   const year = '%'+req.params.year+'%';
-  const genres = req.params.genres+'%';
+  const genres = '%'+req.params.genres+'%';;
 
   Movie.findAll({
     where: {

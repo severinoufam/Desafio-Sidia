@@ -1,0 +1,47 @@
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  footer {
+    bottom: 0;
+    color: #58666e;
+    left: 0px;
+    padding: 20px 30px;
+    position: absolute;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    right: 0;
+    background: #ffffff;
+  }
+
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/movies" routerLinkActive="active">Lista de Filmes</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container" role="main">
+  <router-outlet></router-outlet>
+  <!-- Footer -->
+  <footer class="text-center" style="max-width: 100%">
+    <i class="fa fa-copyright"></i>&nbsp; {{ dataAtual }}
+  </footer>
+
+</div>

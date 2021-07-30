@@ -29,7 +29,7 @@ router.get('/create-movies', async (req, res) => {
 
 });
 
-router.get("/", movieRoutes.findMoviesTitle);
+router.get("/:title", movieRoutes.findMoviesTitle);
 router.get("/:year/:genres", movieRoutes.findMoviesYearGenres);
 router.get("/:topk", movieRoutes.findMoviesListTopK);
 

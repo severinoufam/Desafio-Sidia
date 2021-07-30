@@ -4,6 +4,7 @@ import { Movie } from '../../interfaces/movie';
 
 import Swal from "sweetalert2";
 import { MovieService } from '../../services/movie.service';
+import { AlertService } from "../../services/alert.service";
 
 @Component({
   selector: 'app-device',
@@ -23,17 +24,14 @@ export class MovieComponent implements OnInit {
     yearFilter:0,
     rating:1,
   }
-  constructor( private movieService: MovieService) { }
+  constructor( private movieService: MovieService, private alertService: AlertService) { }
 
   ngOnInit(): void {
 
     const dataAtual = new Date().getFullYear()
     this.movie.yearFilter = dataAtual
     this.movie.typeFilter = 1
-
     for(let year = dataAtual; year >= 1994 ; year--)this.years.push(year)
-
-    this.getMoviesTitle();
   }
 
   getTypeFilter(type:number){
@@ -58,6 +56,12 @@ export class MovieComponent implements OnInit {
   getMoviesTitle(){
  
     this.movie.title  = this.movie.title.trim();
+
+    if ( this.movie.title.length  == 0 ){
+      this.alertService.info('Atenção!',`Por favor, informe uma descrição.`)
+      return
+    }
+
     this.movieService.getMoviesTitle(this.movie.title).subscribe(movies => this.movies = movies)
 
   }
@@ -65,11 +69,23 @@ export class MovieComponent implements OnInit {
   getMoviesYearGenres(){
 
     this.movie.genres  = this.movie.title.trim();
+
+    if ( this.movie.genres.length  == 0 ){
+      this.alertService.info('Atenção!',`Por favor, informe um gênero.`)
+      return
+    }
+
     this.movieService.getMoviesYearGenres(this.movie.yearFilter,this.movie.genres).subscribe(movies => this.movies = movies)
 
   }
 
   getMoviesEvaluationStars(){
+
+    if ( this.movie.rating > 5){
+      this.alertService.info('Atenção!',`Por favor, informe um valor entre 1 e 5.`)
+      return
+    }
+
     this.movieService.getMoviesEvaluationStars(this.movie.rating).subscribe(movies => this.movies = movies)
   }
 

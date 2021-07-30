@@ -2,9 +2,9 @@
   "name": "desafio-sidia",
   "version": "1.0.0",
   "description": "Desenvolvimento de um API REST que faça uso do conjunto de dados MovieLens.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon",
     "start": "node server.js"
   },
   "repository": {
@@ -24,7 +24,11 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "mysql2": "^2.2.5",
-    "nodemon": "^2.0.12",
-    "sequelize": "^6.6.5"
+    "readline": "^1.3.0",
+    "sequelize": "^6.6.5",
+    "stream": "0.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }

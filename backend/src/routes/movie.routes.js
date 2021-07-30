@@ -31,6 +31,6 @@ router.get('/create-movies', async (req, res) => {
 
 router.get("/:title", movieRoutes.findMoviesTitle);
 router.get("/:year/:genres", movieRoutes.findMoviesYearGenres);
-router.get("/evaluation/:topk", movieRoutes.findMoviesListTopK);
+router.get("/evaluation/stars/:topk", movieRoutes.findMoviesListTopK);
 
 module.exports = router

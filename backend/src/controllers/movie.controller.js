@@ -28,7 +28,7 @@ exports.create = (res) => {
 //Busca de filmes por titulo
 exports.findMoviesTitle = (req, res) => {
 
-  const filter = '%'+req.body.title+'%'
+  const filter = '%'+req.params.title+'%'
 
   Movie.findAll({
     where: {

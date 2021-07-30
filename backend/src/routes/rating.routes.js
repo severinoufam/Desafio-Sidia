@@ -25,8 +25,7 @@ router.get('/create-ratings', async (req, res) => {
 
   }
 
-  console.log('>>>>>>>>>>>>>>>>finalizou <<<<<<==')
-  return res.status(200).send()
+  return res.status(200).send({message: 'Create Ratings => OK'});
 
 })
 

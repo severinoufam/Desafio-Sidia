@@ -4,4 +4,5 @@ export interface Movie {
   genres: string;
   typeFilter: number;
   yearFilter: number;
+  rating: number;
 }

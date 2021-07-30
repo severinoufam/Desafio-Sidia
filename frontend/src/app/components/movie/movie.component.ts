@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Movie } from '../../interfaces/movie';
-import { Rating } from '../../interfaces/rating';
 
 import Swal from "sweetalert2";
 import { MovieService } from '../../services/movie.service';
@@ -22,12 +21,7 @@ export class MovieComponent implements OnInit {
     genres: '',
     typeFilter: 0,
     yearFilter:0,
-  }
-  rating: Rating = {
-    userId: 0,
-    movieId: 0,
-    rating: 1,
-    timestamp: 0,
+    rating:1,
   }
   constructor( private movieService: MovieService) { }
 
@@ -43,6 +37,7 @@ export class MovieComponent implements OnInit {
   }
 
   getTypeFilter(type:number){
+      this.movie.title = ''
       this.movie.typeFilter = type;
   }
 
@@ -55,26 +50,27 @@ export class MovieComponent implements OnInit {
           this.getMoviesYearGenres()
           break;
         case 3:
-          this.getMoviesTitle()
+          this.getMoviesEvaluationStars()
           break;
       }
   }
 
   getMoviesTitle(){
-    console.log('getMoviesTitle')
+ 
     this.movie.title  = this.movie.title.trim();
-
     this.movieService.getMoviesTitle(this.movie.title).subscribe(movies => this.movies = movies)
 
   }
 
   getMoviesYearGenres(){
-    console.log('getMoviesYearGenres')
-    this.movie.genres  = this.movie.title.trim();
-    console.log(this.movie.genres)
-    console.log(this.movie.yearFilter)
 
+    this.movie.genres  = this.movie.title.trim();
     this.movieService.getMoviesYearGenres(this.movie.yearFilter,this.movie.genres).subscribe(movies => this.movies = movies)
+
+  }
+
+  getMoviesEvaluationStars(){
+    this.movieService.getMoviesEvaluationStars(this.movie.rating).subscribe(movies => this.movies = movies)
   }
 
 }

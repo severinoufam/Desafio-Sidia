@@ -21,7 +21,7 @@
       </div>
       <div class="form-check form-check-inline">
         <input (click)="getTypeFilter(3)" class="form-check-input" type="radio" name="typeFilter" id="typeFilter3" value="3">
-        <label class="form-check-label" for="inlineRadio2">Classificação por avaliação</label>
+        <label class="form-check-label" for="inlineRadio2">Classificação por Avaliação</label>
       </div>
 
       <div class="row" style="margin-top:20px;">
@@ -37,9 +37,12 @@
           </div>
         </div>
 
-        <div *ngIf="movie.typeFilter == 3" class="col-2">
+        <div *ngIf="movie.typeFilter == 3" class="col-3">
           <label for="partNumber" class="form-label">Avaliação</label>
-          <input [(ngModel)]="rating.rating" type="number" min="1" max="5" class="form-control" id="rating" name="rating">
+            <div class="input-group mb-3">
+              <input [(ngModel)]="movie.rating" type="number" min="1" max="5" class="form-control" id="rating" name="rating">
+              <button (click)="searchMovies()" class="btn btn-outline-info" type="button" id="btn-filter">Pesquisar</button>
+          </div>
         </div>
 
       </div>
@@ -53,12 +56,14 @@
         <tr>
           <th scope="col">Descrição</th>
           <th scope="col">Gênero</th>
+          <th *ngIf="movie.typeFilter == 3" scope="col">Avaliação</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let movie of movies">
           <td>{{ movie.title }}</td>
           <td>{{ movie. genres}}</td>
+          <td >{{ movie. rating}}</td>
         </tr>
         </tbody>
       </table>

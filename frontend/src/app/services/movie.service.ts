@@ -26,7 +26,7 @@ export class MovieService {
 
     return this.http.get<Movie[]>(url)
       .pipe(
-        tap(() => this.log('fetched movie')),
+        tap(() => this.log('fetched movies')),
         catchError(this.handleError<Movie[]>('getMoviesTitle', []))
       );
   }
@@ -38,8 +38,21 @@ export class MovieService {
 
       return this.http.get<Movie[]>(url)
         .pipe(
-          tap(() => this.log('fetched movie')),
+          tap(() => this.log('fetched movies')),
           catchError(this.handleError<Movie[]>('getMoviesYearGenres', []))
+        );
+    }
+
+    /** Busca filme pela classificação **/
+
+    getMoviesEvaluationStars(rating: number): Observable<Movie[]> {
+
+      const url = `${this.movieUrl}/evaluation/stars/${rating}`;
+
+      return this.http.get<Movie[]>(url)
+        .pipe(
+          tap(() => this.log('fetched movies')),
+          catchError(this.handleError<Movie[]>('getMoviesEvaluationStars', []))
         );
     }
 

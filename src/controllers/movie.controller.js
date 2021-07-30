@@ -73,3 +73,16 @@ exports.findMoviesYearGenres = (req, res) => {
       });
     });
 };
+
+//Busca de filmes com classificação K
+exports.findMoviesListTopK = async (req, res) => {
+
+  const topk = req.params.topk;
+  const [results] = await db.sequelize.query("Select movies.*, ratings.rating from movies "+
+                                                                        "INNER JOIN ratings ON ratings.movie_id = movies.movie_id "+
+                                                                        "where ratings.rating BETWEEN 0 and "+topk+" "+
+                                                                        "ORDER by ratings.rating desc");
+
+  res.status(200).send(results);
+
+};

@@ -44,3 +44,30 @@ exports.findMoviesTitle = (req, res) => {
       });
     });
 };
+
+//Busca de filmes por ano e genero
+exports.findMoviesYearGenres = (req, res) => {
+  const year = "%" + req.params.year + "%";
+  const genres = req.params.genres + "%";
+
+  Movie.findAll({
+    where: {
+      [Sequelize.Op.and]: {
+        genres: {
+          [Sequelize.Op.like]: genres,
+        },
+        title: {
+          [Sequelize.Op.like]: year,
+        },
+      },
+    },
+  })
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Erro ao listar o filme.",
+      });
+    });
+};
